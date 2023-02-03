@@ -2,6 +2,8 @@ package commandLine;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 
+import java.time.LocalDate;
+
 import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
@@ -39,6 +41,7 @@ public class EmployeConsole
 			menu.add(changerPrenom(employe));
 			menu.add(changerMail(employe));
 			menu.add(changerPassword(employe));
+			menu.add(changerDateDepart(employe));
 			menu.addBack("q");
 			return menu;
 	}
@@ -70,6 +73,16 @@ public class EmployeConsole
 		  employe.remove();
 		  
 		  
+		});
+	}
+	private Option changerDateDepart(final Employe employe) {
+		return new Option("Modifier la date de départ","d",()->
+		{
+			int day = Integer.parseInt(getString("Jour :"));
+			int month = Integer.parseInt(getString("Mois :"));
+			int year = Integer.parseInt(getString("Année :"));
+			
+			employe.setDepart(LocalDate.of(year, month, day));
 		});
 	}
 

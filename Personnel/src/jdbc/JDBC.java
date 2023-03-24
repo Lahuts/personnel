@@ -17,8 +17,9 @@ public class JDBC implements Passerelle
 	{
 		try
 		{
-			Class.forName(Credentials.getDriverClassName());
-			connection = DriverManager.getConnection(Credentials.getUrl(), Credentials.getUser(), Credentials.getPassword());
+			Class.forName(CredentialsExample.getDriverClassName());
+			connection = DriverManager.getConnection(CredentialsExample.getUrl(), CredentialsExample.getUser(), CredentialsExample.getPassword());
+			System.out.println(this);
 		}
 		catch (ClassNotFoundException e)
 		{
@@ -86,5 +87,32 @@ public class JDBC implements Passerelle
 			exception.printStackTrace();
 			throw new SauvegardeImpossible(exception);
 		}		
+	}
+	@Override
+	public int insertEmploye(Employe employe) throws SauvegardeImpossible
+	{
+		try 
+		{
+			PreparedStatement instruction;
+			instruction = connection.prepareStatement("INSERT into employe (nom,prenom,mail,password,ligue,DateArrive,DateDepart) values(?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+			instruction.setString(1,employe.getNom());
+			instruction.setString(2,employe.getPrenom());
+			instruction.setString(3,employe.getMail());
+			instruction.setString(4,employe.getPassword());
+			instruction.setString(5,employe.getLigue().getNom());
+			instruction.setString(6,employe.getArrive().toString());
+			instruction.setString(7,employe.getDepart().toString());
+			instruction.executeUpdate();
+			ResultSet id = instruction.getGeneratedKeys();
+			id.next();
+			System.out.println(id);
+			return id.getInt(1);
+		}
+		catch(SQLException exception)
+		{
+			exception.printStackTrace();
+			throw new SauvegardeImpossible(exception);
+		}
+		
 	}
 }

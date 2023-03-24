@@ -17,6 +17,7 @@ public class JDBC implements Passerelle
 	{
 		try
 		{
+			System.out.println("new JDBC");
 			Class.forName(CredentialsExample.getDriverClassName());
 			connection = DriverManager.getConnection(CredentialsExample.getUrl(), CredentialsExample.getUser(), CredentialsExample.getPassword());
 			System.out.println(this);
@@ -80,6 +81,7 @@ public class JDBC implements Passerelle
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
 			id.next();
+			System.out.println(id);
 			return id.getInt(1);
 		} 
 		catch (SQLException exception) 
@@ -94,14 +96,14 @@ public class JDBC implements Passerelle
 		try 
 		{
 			PreparedStatement instruction;
-			instruction = connection.prepareStatement("INSERT into employe (nom,prenom,mail,password,ligue,DateArrive,DateDepart) values(?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+			instruction = connection.prepareStatement("INSERT into employe (nom,premom,mail,password,id_ligue,DateArrive) values(?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
 			instruction.setString(1,employe.getNom());
 			instruction.setString(2,employe.getPrenom());
 			instruction.setString(3,employe.getMail());
 			instruction.setString(4,employe.getPassword());
-			instruction.setString(5,employe.getLigue().getNom());
+			instruction.setInt(5,employe.getLigue().getId());
 			instruction.setString(6,employe.getArrive().toString());
-			instruction.setString(7,employe.getDepart().toString());
+//			instruction.setString(7,employe.getDepart().toString());
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
 			id.next();

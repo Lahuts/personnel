@@ -73,9 +73,7 @@ public class EmployeConsole
 		return new Option ("Supprimer l'employé","s", () -> 
 		{
 		  System.out.println("L'employé a été supprimer appuyer sur q pour revenir à l'écran précédent");
-		  employe.remove();
-		  
-		  
+		  employe.remove();	  
 		});
 		
 	}

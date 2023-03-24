@@ -30,6 +30,7 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.ligue = ligue;
 		this.date_arrive = arrive_en;
 		this.date_depart = partit_en;
+		
 	}
 	
 	/**
@@ -136,9 +137,17 @@ public class Employe implements Serializable, Comparable<Employe>
 	
 	public void setPassword(String password)
 	{
-		this.password= password;
+		this.password = password;
 	}
-
+	
+	/*
+	 * Retourne le password de l'employe>
+	 * @return le password de lemploye
+	 */
+	public String getPassword()
+	{
+		return this.password;
+	}
 	/**
 	 * Retourne la ligue à laquelle l'employé est affecté.
 	 * @return la ligue à laquelle l'employé est affecté.

@@ -1,0 +1,6 @@
+Ligue : id , nom
+appartenir,01 Employe,0N Ligue
+Employe : id , nom , premom, mail, password , dateArrive,dateDepart
+Etre,11 Employe,0N Role
+Role : id , nom
+

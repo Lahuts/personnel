@@ -147,6 +147,7 @@ public class JDBC implements Passerelle
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
 			id.next();
+			System.out.println(id);
 			return id.getInt(1);
 		} 
 		catch (SQLException exception) 
@@ -161,14 +162,18 @@ public class JDBC implements Passerelle
 		try 
 		{
 			PreparedStatement instruction;
+
 			instruction = connection.prepareStatement("INSERT into employe (nom,premom,mail,password,id_ligue,DateArrive,id_role) values(?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+
 			instruction.setString(1,employe.getNom());
 			instruction.setString(2,employe.getPrenom());
 			instruction.setString(3,employe.getMail());
 			instruction.setString(4,employe.getPassword());
 			instruction.setInt(5,employe.getLigue().getId());
 			instruction.setString(6,employe.getArrive().toString());
+
 			instruction.setInt(7,0);
+
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
 			id.next();
@@ -182,6 +187,7 @@ public class JDBC implements Passerelle
 		}
 		
 	}
+
 	
 
 	@Override
@@ -253,4 +259,5 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(e);
 		}
 	}
+
 }

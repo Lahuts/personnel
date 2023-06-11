@@ -32,6 +32,7 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.ligue = ligue;
 		this.date_arrive = arrive_en;
 		this.date_depart = partit_en;
+
 		this.id = id;
 		this.role = role;
 		
@@ -47,6 +48,7 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.date_arrive = arrive_en;
 		this.date_depart = partit_en;
 		this.id = gestionPersonnel.insertEmploye(this);
+
 		
 	}
 	
@@ -169,7 +171,9 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void setPassword(String password) throws SauvegardeImpossible
 	{
 		this.password = password;
+
 		gestionPersonnel.updateEmploye(this,"password",this.getPassword());
+
 	}
 	
 	/*

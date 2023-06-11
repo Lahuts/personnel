@@ -150,6 +150,12 @@ public class Ligue implements Serializable, Comparable<Ligue>
 		}
 
 		employes.add(employe);
+		try {
+			this.gestionPersonnel.insertEmploye(employe);
+		} catch (SauvegardeImpossible e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return employe;
 	}
 	

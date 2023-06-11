@@ -98,9 +98,15 @@ public class LigueConsole
 		return new Option("ajouter un employé", "a",
 				() -> 
 				{
-					ligue.addEmploye(getString("nom : "), 
-						getString("prenom : "), getString("mail : "), 
-						getString("password : "), LocalDate.now());
+					try {
+						ligue.addEmploye(getString("nom : "), 
+							getString("prenom : "), getString("mail : "), 
+							getString("password : "), LocalDate.now()
+							,0);
+					} catch (SauvegardeImpossible e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 		);
 	}
@@ -121,7 +127,12 @@ public class LigueConsole
 	{
 		return new List<>("Changer l'aministrateur ", "a", 
 				() -> new ArrayList<>(ligue.getEmployes()),
-				(index, element) -> {ligue.setAdministrateur(element);}
+				(index, element) -> {try {
+					ligue.setAdministrateur(element);
+				} catch (SauvegardeImpossible e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}}
 				);
 	}		
 

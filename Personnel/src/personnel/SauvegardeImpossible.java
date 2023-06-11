@@ -21,4 +21,11 @@ public class SauvegardeImpossible extends Exception
 			System.err.println("Causé par : ");
 			exception.printStackTrace();			
 	}
+	public String printStacktrace(Exception e) {
+		
+		super.printStackTrace();
+		System.err.println("Causé par : ");
+		 return exception.getMessage();
+	}
+	
 }
